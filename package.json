@@ -1,0 +1,10 @@
+{
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2
+  },
+  "dependencies": {
+    "nprogress": "^0.2.0"
+  }
+}

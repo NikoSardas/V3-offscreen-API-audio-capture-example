@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "offscreen API example",
+  "version": "1.0.0",
+  "description": "Chrome extension V3 background audio capturing example using the offscreen API",
+  "minimum_chrome_version": "116",
+  "permissions": ["tabCapture", "offscreen"],
+  
+  "action": {
+    "default_title": "V3 offscreen API"
+  },
+  "background": {
+    "service_worker": "serviceworker.js"
+  }
+}
