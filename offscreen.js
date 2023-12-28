@@ -72,7 +72,7 @@ class CapturedAudioObject {
     const audioTracks = streamOutput.mediaStream.getAudioTracks();
 
     if (audioTracks.length > 0) audioTracks[0].stop();
-    
+
     audioCtx.close();
 
     return true;
@@ -107,15 +107,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case 'getCapturedState':
       sendResponse(capturedTab.captured);
       return true;
-
-    case 'saveWindowState':
-      capturedTab.windowState = message.state;
-      break;
-
-    case 'getSavedWindowState':
-      sendResponse({
-        state: capturedTab.windowState,
-      });
-      break;
   }
 });

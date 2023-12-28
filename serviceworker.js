@@ -39,56 +39,6 @@ const offscreenDoc = {
   },
 };
 
-const fullScreen = {
-  async enter() {
-    const { id } = await chrome.windows.getCurrent();
-    chrome.windows.update(id, { state: 'fullscreen' });
-  },
-
-  async exit({ state }) {
-    const { id } = await chrome.windows.getCurrent();
-    chrome.windows.update(id, state);
-  },
-
-  async getSavedWindowState({ state, tabId }) {
-    try {
-      return await sendMessage({
-        target: 'offscreen',
-        type: 'getSavedWindowState',
-        state,
-        tabId,
-      });
-    } catch (error) {
-      utils.handleError('Error getting saved window state', error);
-      return state;
-    }
-  },
-
-  async saveWindowState({ state, tabId }) {
-    await sendMessage({
-      target: 'offscreen',
-      type: 'saveWindowState',
-      state,
-      tabId,
-    });
-  },
-
-  async toggle({ fullscreen, tabId }) {
-    const { state } = await chrome.windows.getCurrent();
-
-    if (fullscreen) {
-      await this.saveWindowState({ state, tabId });
-      this.enter();
-    } else {
-      const savedWindowState = await this.getSavedWindowState({
-        state,
-        tabId,
-      });
-      this.exit({ state: savedWindowState });
-    }
-  },
-};
-
 const utils = {
   handleError(message = 'An error occurred', error = null) {
     console.error(message, error);
@@ -146,15 +96,6 @@ chrome.tabs.onRemoved.addListener((tabId) => {
     }
   );
 });
-
-chrome.tabCapture.onStatusChanged.addListener(
-  async ({ status, fullscreen, tabId }) => {
-    if (status === 'active') {
-      const tabIsCaptured = capturedTab.getState(tabId);
-      if (tabIsCaptured) fullScreen.toggle({ fullscreen, tabId });
-    }
-  }
-);
 
 chrome.runtime.onInstalled.addListener(async ({ reason, previousVersion }) => {
   if (reason === 'chrome_update') return;
