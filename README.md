@@ -8,8 +8,7 @@ This repository provides a sample Chrome extension showcasing the use of the Chr
 
 - Chrome Manifest V3 structure
 - Background audio capture using the Offset API
-- [Add any additional features or functionalities of your extension]
-
+ 
 ## Getting Started
 
 To use this example, follow these steps:
@@ -18,3 +17,5 @@ To use this example, follow these steps:
 
    ```bash
    git clone https://github.com/nikosardas/V3-offscreen-API-audio-capture-example.git
+2. Load the folder from the ://extensions page on your Chromium browser (make sure developer mode is enabled.)
+3. Click the extension button to toggle tab capture.
