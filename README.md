@@ -17,5 +17,5 @@ To use this example, follow these steps:
 
    ```bash
    git clone https://github.com/nikosardas/V3-offscreen-API-audio-capture-example.git
-2. Load the folder from the ://extensions page on your Chromium browser (make sure developer mode is enabled.)
+2. Load the extension from the local folder.
 3. Click the extension button to toggle tab capture.
